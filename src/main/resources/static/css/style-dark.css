@@ -1,0 +1,108 @@
+body {
+	overflow: hidden;
+	font-family: 'Ubuntu', sans-serif;
+	background: #000;
+	color: #fff;
+}
+
+/* Main container styles*/
+.main-container{
+	height: 100vh;
+	overflow: hidden;
+}
+
+.sidebar, .month-slider, .date-container {
+	height: 100vh;
+	/*height:793px1;*/
+	position: relative;
+	overflow: hidden;
+}
+
+	.date-container .table>tbody>tr>th,
+	.date-container .table>tbody>tr>td {
+		border: 0px;
+		transition: all .6s ease;
+	}
+
+.days-headings {
+	position: absolute;
+	width: 100%;
+}
+
+	.days-headings .table>tbody>tr>th{
+		border-bottom: 3px solid #238ea2;
+		height: 75px;
+	}
+
+.dates-content {
+	position: absolute;
+	height: calc(100vh - 100px);
+	top: 125px;
+	overflow: auto;
+	width: 100%;
+}
+
+	.dates-content .table>tbody>tr>td{
+		height: 100px;
+	}
+
+	.dates-content h2 {
+		font-size: 56px;
+		font-weight: 700;
+	}
+
+	.dates-content h3 {
+		font-size: 20px;
+		font-weight: 300;
+	}
+
+	.dates-content h3 {
+		margin-bottom: 25px;
+	}
+
+	
+	.dates-content .table>tbody>tr>td:nth-child(1) h3:after {
+		content: "Mon-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(2) h3:after {
+		content: "Tue-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(3) h3:after {
+		content: "Wed-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(4) h3:after {
+		content: "Thu-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(5) h3:after {
+		content: "Fri-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(6) h3:after {
+		content: "Sat-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(7) h3:after {
+		content: "Sun-";
+	}
+
+	.dates-content ul {
+		color: #a5a5a5;
+		font-size: 13px;
+		font-weight: 300;
+	}
+
+	.dates-content ul li{
+		margin-bottom: 25px;
+		padding-right: 20%;
+	}
+
+/* dates content hover effect */
+/*.dates-content .table>tbody>tr>td:hover{
+	background: #ff5858;
+	color: #000;
+	transition: all .6s ease;
+}
+
+.dates-content .table>tbody>tr>td:hover ul {
+	color: #543030;
+}
+
+*/

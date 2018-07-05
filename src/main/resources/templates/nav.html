@@ -1,0 +1,189 @@
+<!--  Created by IntelliJ IDEA.
+  User: s lion h
+  Date: 2018/4/23
+  Time: 15:04
+  To change this template use File | Settings | File Templates.-->
+<html xmlns:th="http://www.thumeleaf.org">
+<div th:fragment="side">
+<div id="copy" class="col-md-1 userarea">
+    <ul>
+        <li>&nbsp;</li>
+
+        <!-- user-head-->
+        <li>
+            <!--<a class='btn' data-toggle='modal' data-target='#myLogModal'>-->
+                <!--<img src='img/head.jpg' class='img-rounded userimg'>-->
+                <!--<br/>${user.username}-->
+            <!--</a>-->
+            <a class='btn' data-toggle='modal' data-target='#myModal'>
+                <img src='img/head.jpg' class='img-rounded userimg'>
+                <br/>login
+            </a>
+
+        </li>
+
+        <!-- write状态-->
+        <li>
+            <a class='btn' data-toggle='modal' data-target='#addevent'>
+                <img src="img/write.jpg" class="img-rounded">
+                <br/>write
+            </a>
+            <!--<a class='btn' data-toggle='modal' data-target='#myModal'>-->
+                <!--<img src="img/write.jpg" class="img-rounded">-->
+                <!--<br/>write-->
+            <!--</a>-->
+        </li>
+
+        <!-- search的組件 -->
+        <li>
+            <a id="button-tanchu2" title="search function"
+               data-html="true"
+               data-toggle="popover"
+               data-placement="left"
+               data-content="<a href='http://www.bootcss.com/'>Bootstrap</a>
+							the search will link to bootstrap website~">
+                <img src="img/search.jpg" class="img-rounded">
+                <br/>search
+            </a>
+        </li>
+
+        <!-- interesting的组件，需要根据用户登陆情况列出interesting列表 -->
+        <li>
+            <a id="button-tanchu3" title="interesting简介"
+               data-html="true"
+               data-toggle="popover"
+               data-placement="left"
+               data-content="<a href='http://www.bootcss.com/'>Bootstrap</a>
+					       the interesting function has not finish , but this function will guess your interested exeterly">
+                <img src="img/interesting-heart.jpg">
+                <br/>interesting
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 登陆模态框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-contant">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">登陆</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" type="get" action="/UserLogin">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password" class="form-control"  placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-9 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-10 col-sm-10">
+                            <button type="submit" class="btn btn-default">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" target="_blank"><button type="button" class="btn btn-default">admin</button></a>
+                <a href="#"><button type="button" class="btn btn-default">登出</button></a>
+                <button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>
+                <a href="/regist" target="_blank"><button type="button" class="btn btn-primary">注册</button> </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- write组件，用户添加事件模态框 -->
+<div class="modal fade" id="addevent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-contant">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加事件</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/addEvent" role="form" type="post">
+                    <div class="form-group">
+                        <label for="event" class="col-sm-2 control-label">事件</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="event" class="form-control" id="event" placeholder="event">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="col-sm-2 control-label">时间</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="date" class="form-control" id="date" placeholder="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-10 col-sm-10">
+                            <button type="submit" id="sigin" class="btn btn-default">记录</button>
+                            <input name="a" type="hidden" id="a" value="a" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 已登陆用户模态框 -->
+<div class="modal fade" id="myLogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-contant">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">个人中心</h4>
+            </div>
+            <form class="form-horizontal" role="form" type="get" action="changemessage.jsp">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-10">
+                            <input name="username" class="form-control" id="username" placeholder="your nick name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">头像</label>
+                        <div class="col-sm-5">
+                            <input name="file" type="file" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                        <div class="col-sm-5">
+                            <img src='img/head.jpg' class='img-rounded userimg'>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/Logout"><button type="button" class="btn btn-default" id="logout">登出</button></a>
+                    <button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <a href="/regist" target="_blank"><button type="submit" class="btn btn-primary">提交修改</button> </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</html>

@@ -1,0 +1,273 @@
+<!--  Created by IntelliJ IDEA.
+  User: s lion h
+  Date: 2018/4/17
+  Time: 23:11
+  To change this template use File | Settings | File Templates.-->
+<html xmlns:th="http://www.thumeleaf.org">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="#"/>
+<title>Big Calendar</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<!-- userspecific stylesheet -->
+<link href="css/style.css" rel="stylesheet">
+
+<!-- Google Font embed -->
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Ubuntu:300,400,500,700" rel="stylesheet">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#janu").click(function(){
+            $("#jan").load("date.jsp?month=1");
+        });
+        $("#feb").click(function(){
+            $("#jan").load("date.jsp?month=2");
+        });
+        $("#mar").click(function(){
+            $("#jan").load("date.jsp?month=3");
+        });
+        $("#apr").click(function(){
+            $("#jan").load("date.jsp?month=4");
+        });
+        $("#may").click(function(){
+            $("#jan").load("date.jsp?month=5");
+        });
+        $("#jun").click(function(){
+            $("#jan").load("date.jsp?month=6");
+        });
+        $("#jul").click(function(){
+            $("#jan").load("date.jsp?month=7");
+        });
+        $("#aug").click(function(){
+            $("#jan").load("date.jsp?month=8");
+        });
+        $("#sep").click(function(){
+            $("#jan").load("date.jsp?month=9");
+        });
+        $("#oct").click(function(){
+            $("#jan").load("date.jsp?month=10");
+        });
+        $("#nov").click(function(){
+            $("#jan").load("date.jsp?month=11");
+        });
+        $("#dec").click(function(){
+            $("#jan").load("date.jsp?month=12");
+        });
+
+        $('ul.nav > li').click(function (e) {
+            e.preventDefault();
+            $('ul.nav > li').removeClass('active');
+            $(this).addClass('active');
+
+        });
+    });
+
+
+    $(function (){
+        $("#button-tanchu").popover();
+    });
+    $(function (){
+        $("#button-tanchu2").popover();
+    });
+    $(function (){
+        $("#button-tanchu3").popover();
+    });
+
+
+
+</script>
+
+<style type="text/css">
+  .modal-contant{
+    background: #fff;
+  }
+  .popover.left {
+    margin-left: -65px;
+  }
+  .event-tab{
+    color: #ff99cc;
+  }
+</style>
+
+</head>
+
+
+
+<body  data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+
+  <main class="container-fluid main-container">
+    <!-- main shows -->
+    <div class="row">
+      <div class="col-md-2 month-slider">
+        <!-- left data -->
+        <nav class="navbar" id="myScrollspy">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="">&nbsp;</a></li>
+            <li ><a id="janu" href="#janu">January</a></li>
+            <li ><a id="feb" href="#feb">February</a></li>
+            <li ><a id="mar" href="#mar">March</a></li>
+            <li ><a id="apr" href="#apr">April</a></li>
+            <li ><a id="may" href="#may">May</a></li>
+            <li ><a id="jun" href="#jun">June</a></li>
+            <li ><a id="jul" href="#jul">July</a></li>
+            <li ><a id="aug" href="#aug">August</a></li>
+            <li ><a id="sep" href="#sep">September</a></li>
+            <li ><a id="oct" href="#oct">October</a></li>
+            <li ><a id="nov" href="#nov">November</a></li>
+            <li ><a id="dec" href="#dec">December</a></li>
+            <li >&nbsp;</li>
+            <li >&nbsp;</li>
+            <li >&nbsp;</li>
+            <li >&nbsp;</li>
+            <li class="text-center">粤ICP备17096671号</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- total on right -->
+      <div class="col-md-9 date-container">
+        <!-- The days are listed on top -->
+        <div class="table-responsive days-headings">
+          <table class="table">
+            <tr>
+              <th>M</th>
+              <th>T</th>
+              <th>W</th>
+              <th>T</th>
+              <th>F</th>
+              <th>S</th>
+              <th>S</th>
+            </tr>
+          </table>
+        </div>
+
+
+        <!-- The dates and main items comes here -->
+        <div class="dates-content table-responsive">
+          <table id="calendar" class="table">
+            <tbody>
+              <tr v-for="m in 6">
+                <template v-if="m==1">
+                  <td v-for="n in dayOfWeek-1">&nbsp;</td>
+                  <td v-for="i in 8-dayOfWeek">
+                    <h2>{{cDays[i-1].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[i-1].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+                <template v-if="m==2">
+                  <td v-for="i in 7">
+                    <h2>{{cDays[second-2+i].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[second-2+i].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+                <template v-if="m==3">
+                  <td v-for="i in 7">
+                    <h2>{{cDays[third-2+i].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[third-2+i].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+                <template v-if="m==4">
+                  <td v-for="i in 7">
+                    <h2>{{cDays[forth-2+i].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[forth-2+i].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+                <template v-if="m==5">
+                  <td v-for="i in 7">
+                    <h2>{{cDays[five-2+i].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[five-2+i].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+                <template v-if="m==6">
+                  <td v-for="(dDays.length-six)">
+                    <h2>{{cDays[six-2+1].day}}</h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                      <li v-for="event in cDays[six-2+1].event">
+                        {{event.event}}
+                      </li>
+                      <li>The event will come here</li>
+                      <li>The events will come here</li>
+                    </ul>
+                  </td>
+                </template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $.getJSON("/calendar", function (result, status) {
+                        var v = new Vue({
+                            el: '#calendar',
+                            data: {
+                                year: result.year,
+                                month: result.month,
+                                today: result.today,
+                                dayOfWeek: result.dayOfWeek,
+                                cDays: result.cDays,
+                                second: 9-result.dayOfWeek,
+                                third: 16-result.dayOfWeek,
+                                forth: 23-result.dayOfWeek,
+                                five: 30-result.dayOfWeek,
+                                six: 37-result.dayOfWeek
+                            }
+                        })
+                    });
+
+                });
+            </script>
+
+          </table>
+        </div>
+
+        <!--<div th:replace="nav::copy"></div>-->
+        <div th:include="nav::side"></div>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slionh.bigcalendar.mapper.EventMapper">
+    <insert id="addEvent" parameterType="com.slionh.bigcalendar.model.Event" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO event (date,event,uid) VALUES (#{date},#{event},#{uid});
+    </insert>
+
+</mapper>

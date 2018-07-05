@@ -1,0 +1,126 @@
+body {
+	overflow: hidden;
+	font-family: 'Ubuntu', sans-serif;
+	background: #fff;
+	color: #000;
+}
+
+/* Main container styles*/
+.main-container{
+	/*height: calc(100vh - 50px);*/
+	height: 900px;
+    overflow: hidden;
+    top: 0px;
+    /*golbal height*/
+    position: relative;
+}
+
+.sidebar, .month-slider, .date-container {
+	height: calc(100vh - 75px);
+	position: relative;
+	overflow: hidden;
+}
+
+	.date-container .table>tbody>tr>th,
+	.date-container .table>tbody>tr>td {
+		border: 0px;
+		transition: all .6s ease;
+	}
+
+.days-headings {
+	position: fixed;
+	width: 73%;
+	top: 0px;
+}
+
+	.days-headings .table>tbody>tr>th{
+		border-bottom: 3px solid #000;
+		height: 10px;
+	}
+
+.dates-content {
+	position: absolute;
+	/*height: calc(100vh - 200px);*/
+	height: 900px;
+	top: 50px;
+	overflow: auto;
+	width: 100%;
+}
+
+	.dates-content .table>tbody>tr>td{
+		padding-top: 0px;
+		height: 100px;
+	}
+
+	.dates-content h2 {
+		font-size: 56px;
+		font-weight: 700;
+	}
+
+	.dates-content h3 {
+		font-size: 20px;
+		font-weight: 300;
+	}
+
+	.dates-content h3 {
+		margin-bottom: 25px;
+	}
+
+	.dates-content .table>tbody>tr>td:nth-child(1) h3:after {
+		content: "Mon-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(2) h3:after {
+		content: "Tue-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(3) h3:after {
+		content: "Wed-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(4) h3:after {
+		content: "Thu-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(5) h3:after {
+		content: "Fri-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(6) h3:after {
+		content: "Sat-";
+	}
+	.dates-content .table>tbody>tr>td:nth-child(7) h3:after {
+		content: "Sun-";
+	}
+
+	.dates-content ul {
+		color: #a5a5a5;
+		font-size: 13px;
+		font-weight: 300;
+
+	}
+
+	.dates-content ul li{
+		margin-bottom: 25px;
+		padding-right: 20%;
+
+	}
+
+.userarea{
+	/*background-color: #ffffcc;*/
+}
+.userarea ul{
+	padding-left: 0px;
+}
+.userarea li{
+	padding-bottom: 20px;
+	list-style-type: none;
+	margin: 0;
+	text-align:center
+
+}
+
+.userarea img{
+	width: 40%;
+
+}
+.userarea .userimg{
+	width: 100%;
+}
+
+
