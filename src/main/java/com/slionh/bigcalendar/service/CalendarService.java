@@ -7,4 +7,5 @@ import com.slionh.bigcalendar.model.MyCalendar;
  */
 public interface CalendarService {
     MyCalendar getCalendar();
+    MyCalendar getMonthCalendar(Integer month);
 }

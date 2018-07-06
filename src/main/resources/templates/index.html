@@ -7,81 +7,16 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" type="text/css" href="#"/>
 <title>Big Calendar</title>
 
-<!-- Bootstrap -->
 <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-<!-- userspecific stylesheet -->
 <link href="css/style.css" rel="stylesheet">
 
 <!-- Google Font embed -->
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Ubuntu:300,400,500,700" rel="stylesheet">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $("#janu").click(function(){
-            $("#jan").load("date.jsp?month=1");
-        });
-        $("#feb").click(function(){
-            $("#jan").load("date.jsp?month=2");
-        });
-        $("#mar").click(function(){
-            $("#jan").load("date.jsp?month=3");
-        });
-        $("#apr").click(function(){
-            $("#jan").load("date.jsp?month=4");
-        });
-        $("#may").click(function(){
-            $("#jan").load("date.jsp?month=5");
-        });
-        $("#jun").click(function(){
-            $("#jan").load("date.jsp?month=6");
-        });
-        $("#jul").click(function(){
-            $("#jan").load("date.jsp?month=7");
-        });
-        $("#aug").click(function(){
-            $("#jan").load("date.jsp?month=8");
-        });
-        $("#sep").click(function(){
-            $("#jan").load("date.jsp?month=9");
-        });
-        $("#oct").click(function(){
-            $("#jan").load("date.jsp?month=10");
-        });
-        $("#nov").click(function(){
-            $("#jan").load("date.jsp?month=11");
-        });
-        $("#dec").click(function(){
-            $("#jan").load("date.jsp?month=12");
-        });
-
-        $('ul.nav > li').click(function (e) {
-            e.preventDefault();
-            $('ul.nav > li').removeClass('active');
-            $(this).addClass('active');
-
-        });
-    });
-
-
-    $(function (){
-        $("#button-tanchu").popover();
-    });
-    $(function (){
-        $("#button-tanchu2").popover();
-    });
-    $(function (){
-        $("#button-tanchu3").popover();
-    });
-
-
-
-</script>
 
 <style type="text/css">
   .modal-contant{
@@ -94,13 +29,11 @@
     color: #ff99cc;
   }
 </style>
-
 </head>
 
 
 
 <body  data-spy="scroll" data-target="#myScrollspy" data-offset="50">
-
   <main class="container-fluid main-container">
     <!-- main shows -->
     <div class="row">
@@ -109,23 +42,23 @@
         <nav class="navbar" id="myScrollspy">
           <ul class="nav nav-pills nav-stacked">
             <li><a href="">&nbsp;</a></li>
-            <li ><a id="janu" href="#janu">January</a></li>
-            <li ><a id="feb" href="#feb">February</a></li>
-            <li ><a id="mar" href="#mar">March</a></li>
-            <li ><a id="apr" href="#apr">April</a></li>
-            <li ><a id="may" href="#may">May</a></li>
-            <li ><a id="jun" href="#jun">June</a></li>
-            <li ><a id="jul" href="#jul">July</a></li>
-            <li ><a id="aug" href="#aug">August</a></li>
-            <li ><a id="sep" href="#sep">September</a></li>
-            <li ><a id="oct" href="#oct">October</a></li>
-            <li ><a id="nov" href="#nov">November</a></li>
-            <li ><a id="dec" href="#dec">December</a></li>
+            <li ><a onclick="getMonthCalendar(1)">January</a></li>
+            <li ><a onclick="getMonthCalendar(2)">February</a></li>
+            <li ><a onclick="getMonthCalendar(3)">March</a></li>
+            <li ><a onclick="getMonthCalendar(4)">April</a></li>
+            <li ><a onclick="getMonthCalendar(5)">May</a></li>
+            <li ><a onclick="getMonthCalendar(6)">June</a></li>
+            <li ><a onclick="getMonthCalendar(7)">July</a></li>
+            <li ><a onclick="getMonthCalendar(8)">August</a></li>
+            <li ><a onclick="getMonthCalendar(9)">September</a></li>
+            <li ><a onclick="getMonthCalendar(10)">October</a></li>
+            <li ><a onclick="getMonthCalendar(11)">November</a></li>
+            <li ><a onclick="getMonthCalendar(12)">December</a></li>
             <li >&nbsp;</li>
             <li >&nbsp;</li>
             <li >&nbsp;</li>
             <li >&nbsp;</li>
-            <li class="text-center">粤ICP备17096671号</a></li>
+            <li class="text-center">粤ICP备17096671号</li>
           </ul>
         </nav>
       </div>
@@ -237,37 +170,57 @@
           </table>
         </div>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $.getJSON("/calendar", function (result, status) {
-                        var v = new Vue({
-                            el: '#calendar',
-                            data: {
-                                year: result.year,
-                                month: result.month,
-                                today: result.today,
-                                dayOfWeek: result.dayOfWeek,
-                                cDays: result.cDays,
-                                second: 9-result.dayOfWeek,
-                                third: 16-result.dayOfWeek,
-                                forth: 23-result.dayOfWeek,
-                                five: 30-result.dayOfWeek,
-                                six: 37-result.dayOfWeek
-                            }
-                        })
-                    });
-
-                });
-            </script>
-
           </table>
         </div>
-
-        <!--<div th:replace="nav::copy"></div>-->
+        <!--右侧个人信息栏-->
         <div th:include="nav::side"></div>
 
+      <script type="text/javascript">
+        var today = new Date();
+        var month = today.getMonth() + 1;
+        function getMonthCalendar(month) {
+            $(document).ready(function () {
+                $.getJSON("/monthCalendar?month="+month, function (result, status) {
+                    var v = new Vue({
+                        el: '#calendar',
+                        data: {
+                            year: result.year,
+                            month: result.month,
+                            today: result.today,
+                            dayOfWeek: result.dayOfWeek,
+                            cDays: result.cDays,
+                            second: 9 - result.dayOfWeek,
+                            third: 16 - result.dayOfWeek,
+                            forth: 23 - result.dayOfWeek,
+                            five: 30 - result.dayOfWeek,
+                            six: 37 - result.dayOfWeek
+                        }
+                    })
+                });
+            });
+        };
+        getMonthCalendar(month);
+      </script>
+
+      <script>
+        $(document).ready(function(){
+            $('ul.nav > li').click(function (e) {
+                e.preventDefault();
+                $('ul.nav > li').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+        $(function (){
+            $("#button-tanchu").popover();
+        });
+        $(function (){
+            $("#button-tanchu2").popover();
+        });
+        $(function (){
+            $("#button-tanchu3").popover();
+        });
+      </script>
     </div>
   </main>
-
 </body>
 </html>

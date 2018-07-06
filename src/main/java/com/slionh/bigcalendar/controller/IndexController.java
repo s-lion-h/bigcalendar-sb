@@ -22,10 +22,10 @@ public class IndexController {
     {
         return "index";
     }
-    @RequestMapping("/nav")
-    public String toNav(){
-        return "nav";
-    }
+//    @RequestMapping("/nav")
+//    public String toNav(){
+//        return "nav";
+//    }
     @RequestMapping("/calendar")
     @ResponseBody
     public MyCalendar getCalendar(){
@@ -39,4 +39,11 @@ public class IndexController {
         return "regist";
     }
 
+    @RequestMapping("/monthCalendar")
+    @ResponseBody
+    public MyCalendar getMonthCalendar(Integer month){
+        MyCalendar myCalendar= calendarService.getMonthCalendar(month);
+        System.out.println(myCalendar.toString());
+        return myCalendar;
+    }
 }
