@@ -175,12 +175,78 @@
         <!--右侧个人信息栏-->
         <div th:include="nav::side"></div>
 
+
       <script type="text/javascript">
+        // 默认首页创建一个vue视图，随后请求重写vue的setter
         var today = new Date();
-        var month = today.getMonth() + 1;
+        var thismonth = today.getMonth() + 1;
+       /* var vm=new Vue({
+            el:'#calendar',
+            data:{
+            }
+        });*/
+       // 这里
         function getMonthCalendar(month) {
             $(document).ready(function () {
                 $.getJSON("/monthCalendar?month="+month, function (result, status) {
+                    vm =new Vue({
+                        el: '#calendar',
+                        data: {
+                            year: result.year,
+                            month: result.month,
+                            today: result.today,
+                            dayOfWeek: result.dayOfWeek,
+                            cDays: result.cDays,
+                            second: 9 - result.dayOfWeek,
+                            third: 16 - result.dayOfWeek,
+                            forth: 23 - result.dayOfWeek,
+                            five: 30 - result.dayOfWeek,
+                            six: 37 - result.dayOfWeek
+                        },methods:{
+                            // 当点击事件触发时候会修改掉gc[0]的值为lisi,但是视图不会发生变化
+                            add(){
+                                Vue.set(this.gc,0,{name:'lisi',age:22})
+                            }
+                        }
+                    })
+                });
+            });
+        };
+
+        /*function getMonthCalendar(month) {
+            $(document).ready(function () {
+                $.getJSON("/monthCalendar?month="+month, function (result, status) {
+                    Vue.set(this.vm,'year',result.year);
+                    Vue.set(this.vm,'month',result.month);
+                    Vue.set(this.vm,'today',result.today);
+                    Vue.set(this.vm,'dayOfWeek',result.dayOfWeek);
+                    Vue.set(this.vm,'cDays',result.cDays);
+                    Vue.set(this.vm,'second',result.second);
+                    Vue.set(this.vm,'third',result.third);
+                    Vue.set(this.vm,'forth',result.forth);
+                    Vue.set(this.vm,'five',result.five);
+                    Vue.set(this.vm,'six',result.six);
+                    /!*var v = new Vue({
+                        el: '#calendar',
+                        data: {
+                            year: result.year,
+                            month: result.month,
+                            today: result.today,
+                            dayOfWeek: result.dayOfWeek,
+                            cDays: result.cDays,
+                            second: 9 - result.dayOfWeek,
+                            third: 16 - result.dayOfWeek,
+                            forth: 23 - result.dayOfWeek,
+                            five: 30 - result.dayOfWeek,
+                            six: 37 - result.dayOfWeek
+                        }
+                    })*!/
+                });
+            });
+        };*/
+        /*function getCalendar() {
+            $(document).ready(function () {
+                $.getJSON("/calendar", function (result, status) {
                     var v = new Vue({
                         el: '#calendar',
                         data: {
@@ -198,8 +264,10 @@
                     })
                 });
             });
-        };
-        getMonthCalendar(month);
+        };*/
+        getMonthCalendar(thismonth);
+        // getCalendar();
+
       </script>
 
       <script>
