@@ -9,7 +9,7 @@
                     <h2 th:text="${calendar.cDays[j-1].day}"></h2>
                     <h3></h3>
                     <ul class='list-unstyled'>
-                        <li th:each="event:${calendar.cDays[j-1].event}" th:text="${event.event}"></li>
+                        <li th:each="event:${calendar.cDays[j-1].event}" th:text="${event.event}" class="myEvent"></li>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -20,7 +20,7 @@
                     <h2 th:text="${calendar.cDays[9-calendar.dayOfWeek-2+j].day}"></h2>
                     <h3></h3>
                     <ul class='list-unstyled'>
-                        <li th:each="event:${calendar.cDays[9-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li th:each="event:${calendar.cDays[9-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -31,7 +31,7 @@
                     <h2 th:text="${calendar.cDays[16-calendar.dayOfWeek-2+j].day}"></h2>
                     <h3></h3>
                     <ul class='list-unstyled'>
-                        <li th:each="event:${calendar.cDays[16-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li th:each="event:${calendar.cDays[16-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -42,7 +42,7 @@
                     <h2 th:text="${calendar.cDays[23-calendar.dayOfWeek-2+j].day}"></h2>
                     <h3></h3>
                     <ul class='list-unstyled'>
-                        <li th:each="event:${calendar.cDays[23-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li th:each="event:${calendar.cDays[23-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -54,7 +54,7 @@
                         <h2 th:text="${calendar.cDays[30-calendar.dayOfWeek-2+j].day}"></h2>
                         <h3></h3>
                         <ul class='list-unstyled'>
-                            <li th:each="event:${calendar.cDays[30-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                            <li th:each="event:${calendar.cDays[30-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
                             <li>The event will come here</li>
                             <li>The events will come here</li>
                         </ul>
@@ -67,7 +67,7 @@
                     <h2 th:text="${calendar.cDays[37-calendar.dayOfWeek-2+j].day}"></h2>
                         <h3></h3>
                         <ul class='list-unstyled'>
-                            <li th:each="event:${calendar.cDays[37-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                            <li th:each="event:${calendar.cDays[37-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
                             <li>The event will come here</li>
                             <li>The events will come here</li>
                         </ul>

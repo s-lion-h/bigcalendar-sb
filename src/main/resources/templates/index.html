@@ -19,15 +19,35 @@
 <!--<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>-->
 
 <style type="text/css">
-  .modal-contant{
-    background: #fff;
-  }
-  .popover.left {
-    margin-left: -65px;
-  }
-  .event-tab{
-    color: #ff99cc;
-  }
+    .modal-contant{
+        background: #fff;
+    }
+    .popover.left {
+        margin-left: -65px;
+    }
+    .event-tab{
+        color: #ff99cc;
+    }
+    .loading {
+    　　position:fixed;
+    　　width:100%;
+    　　height:100%;
+        background:rgba(153,153,153,0.2);
+        color:#FFF;
+        top:0px;
+    }
+    .inMiddle{
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+        text-align:center;
+        font-size: 80px;
+    }
+    .myEvent{
+        color: #ff3b2f;
+        font-size: 18px;
+        font-weight: bolder;
+    }
 </style>
 </head>
 
@@ -81,7 +101,11 @@
         </div>
 
 
-        <div id="calendar" class="dates-content table-responsive"></div>
+        <div id="calendar" class="dates-content table-responsive">
+          <div id="loading" class="loading dates-content table-responsive">
+            <p class="inMiddle">Loading...</p>
+          </div>
+        </div>
 
       </div>
         <!--右侧个人信息栏-->
@@ -101,8 +125,12 @@
                       $("#calendar").html(data);
                   }
               });
+              $("#loading").fadeOut();
           });
           function getMonthCalendar(month){
+              $("#calendar").html("<div id=\"loading\" class=\"loading dates-content table-responsive\">\n" +
+                  "            <p class=\"inMiddle\">Loading...</p>\n" +
+                  "          </div>");
               $.ajax({
                   type : 'get',
                   async : true,
@@ -112,6 +140,7 @@
                       $("#calendar").html(data);
                   }
               });
+              $(".loading").fadeOut();
           }
       </script>
       <script>
