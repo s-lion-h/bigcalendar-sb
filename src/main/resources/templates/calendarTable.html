@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thumeleaf.org">
+<!--The table calendar comes here-->
+<table id="calendar" class="table">
+    <tbody>
+        <tr th:each="i:${#numbers.sequence(1,6)}">
+            <th:block th:if="${i==1}">
+                <td th:if="${calendar.dayOfWeek ne 1}" th:each="j:${#numbers.sequence(1,calendar.dayOfWeek-1)}">&nbsp;</td>
+                <td th:each="j:${#numbers.sequence(1,8-calendar.dayOfWeek)}">
+                    <h2 th:text="${calendar.cDays[j-1].day}"></h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                        <li th:each="event:${calendar.cDays[j-1].event}" th:text="${event.event}"></li>
+                        <li>The event will come here</li>
+                        <li>The events will come here</li>
+                    </ul>
+                </td>
+            </th:block>
+            <th:block th:if="${i==2}">
+                <td th:each="j:${#numbers.sequence(1,7)}">
+                    <h2 th:text="${calendar.cDays[9-calendar.dayOfWeek-2+j].day}"></h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                        <li th:each="event:${calendar.cDays[9-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li>The event will come here</li>
+                        <li>The events will come here</li>
+                    </ul>
+                </td>
+            </th:block>
+            <th:block th:if="${i==3}">
+                <td th:each="j:${#numbers.sequence(1,7)}">
+                    <h2 th:text="${calendar.cDays[16-calendar.dayOfWeek-2+j].day}"></h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                        <li th:each="event:${calendar.cDays[16-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li>The event will come here</li>
+                        <li>The events will come here</li>
+                    </ul>
+                </td>
+            </th:block>
+            <th:block th:if="${i==4}">
+                <td th:each="j:${#numbers.sequence(1,7)}">
+                    <h2 th:text="${calendar.cDays[23-calendar.dayOfWeek-2+j].day}"></h2>
+                    <h3></h3>
+                    <ul class='list-unstyled'>
+                        <li th:each="event:${calendar.cDays[23-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                        <li>The event will come here</li>
+                        <li>The events will come here</li>
+                    </ul>
+                </td>
+            </th:block>
+            <th:block th:if="${i==5}">
+                <td th:each="j:${#numbers.sequence(1,7)}">
+                    <th:block th:if="${(i-1)*7+j-calendar.dayOfWeek+1} le ${calendar.days}">
+                        <h2 th:text="${calendar.cDays[30-calendar.dayOfWeek-2+j].day}"></h2>
+                        <h3></h3>
+                        <ul class='list-unstyled'>
+                            <li th:each="event:${calendar.cDays[30-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                            <li>The event will come here</li>
+                            <li>The events will come here</li>
+                        </ul>
+                    </th:block>
+                </td>
+            </th:block>
+            <th:block th:if="${i==6}">
+                <td th:each="j:${#numbers.sequence(1,7)}">
+                    <th:block th:if="${(i-1)*7+j-calendar.dayOfWeek+1} le ${calendar.days}">
+                    <h2 th:text="${calendar.cDays[37-calendar.dayOfWeek-2+j].day}"></h2>
+                        <h3></h3>
+                        <ul class='list-unstyled'>
+                            <li th:each="event:${calendar.cDays[37-calendar.dayOfWeek-2+j].event}" th:text="${event.event}"></li>
+                            <li>The event will come here</li>
+                            <li>The events will come here</li>
+                        </ul>
+                    </th:block>
+                </td>
+            </th:block>
+        </tr>
+    </tbody>
+</table>
+</html>

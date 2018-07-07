@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Ubuntu:300,400,500,700" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>-->
 
 <style type="text/css">
   .modal-contant{
@@ -63,7 +63,7 @@
         </nav>
       </div>
 
-      <!-- total on right -->
+      <!-- total on middle -->
       <div class="col-md-9 date-container">
         <!-- The days are listed on top -->
         <div class="table-responsive days-headings">
@@ -81,195 +81,39 @@
         </div>
 
 
-        <!-- The dates and main items comes here -->
-        <div class="dates-content table-responsive">
-          <table id="calendar" class="table">
-            <tbody>
-              <tr v-for="m in 6">
-                <template v-if="m==1">
-                  <td v-for="n in dayOfWeek-1">&nbsp;</td>
-                  <td v-for="i in 8-dayOfWeek">
-                    <h2>{{cDays[i-1].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[i-1].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-                <template v-if="m==2">
-                  <td v-for="i in 7">
-                    <h2>{{cDays[second-2+i].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[second-2+i].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-                <template v-if="m==3">
-                  <td v-for="i in 7">
-                    <h2>{{cDays[third-2+i].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[third-2+i].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-                <template v-if="m==4">
-                  <td v-for="i in 7">
-                    <h2>{{cDays[forth-2+i].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[forth-2+i].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-                <template v-if="m==5">
-                  <td v-for="i in 7">
-                    <h2>{{cDays[five-2+i].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[five-2+i].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-                <template v-if="m==6">
-                  <td v-for="(dDays.length-six)">
-                    <h2>{{cDays[six-2+1].day}}</h2>
-                    <h3></h3>
-                    <ul class='list-unstyled'>
-                      <li v-for="event in cDays[six-2+1].event">
-                        {{event.event}}
-                      </li>
-                      <li>The event will come here</li>
-                      <li>The events will come here</li>
-                    </ul>
-                  </td>
-                </template>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div id="calendar" class="dates-content table-responsive"></div>
 
-          </table>
-        </div>
+      </div>
         <!--右侧个人信息栏-->
-        <div th:include="nav::side"></div>
+      <div th:include="nav::side"></div>
 
 
       <script type="text/javascript">
-        // 默认首页创建一个vue视图，随后请求重写vue的setter
-        var today = new Date();
-        var thismonth = today.getMonth() + 1;
-       /* var vm=new Vue({
-            el:'#calendar',
-            data:{
-            }
-        });*/
-       // 这里
-        function getMonthCalendar(month) {
-            $(document).ready(function () {
-                $.getJSON("/monthCalendar?month="+month, function (result, status) {
-                    vm =new Vue({
-                        el: '#calendar',
-                        data: {
-                            year: result.year,
-                            month: result.month,
-                            today: result.today,
-                            dayOfWeek: result.dayOfWeek,
-                            cDays: result.cDays,
-                            second: 9 - result.dayOfWeek,
-                            third: 16 - result.dayOfWeek,
-                            forth: 23 - result.dayOfWeek,
-                            five: 30 - result.dayOfWeek,
-                            six: 37 - result.dayOfWeek
-                        },methods:{
-                            // 当点击事件触发时候会修改掉gc[0]的值为lisi,但是视图不会发生变化
-                            add(){
-                                Vue.set(this.gc,0,{name:'lisi',age:22})
-                            }
-                        }
-                    })
-                });
-            });
-        };
-
-        /*function getMonthCalendar(month) {
-            $(document).ready(function () {
-                $.getJSON("/monthCalendar?month="+month, function (result, status) {
-                    Vue.set(this.vm,'year',result.year);
-                    Vue.set(this.vm,'month',result.month);
-                    Vue.set(this.vm,'today',result.today);
-                    Vue.set(this.vm,'dayOfWeek',result.dayOfWeek);
-                    Vue.set(this.vm,'cDays',result.cDays);
-                    Vue.set(this.vm,'second',result.second);
-                    Vue.set(this.vm,'third',result.third);
-                    Vue.set(this.vm,'forth',result.forth);
-                    Vue.set(this.vm,'five',result.five);
-                    Vue.set(this.vm,'six',result.six);
-                    /!*var v = new Vue({
-                        el: '#calendar',
-                        data: {
-                            year: result.year,
-                            month: result.month,
-                            today: result.today,
-                            dayOfWeek: result.dayOfWeek,
-                            cDays: result.cDays,
-                            second: 9 - result.dayOfWeek,
-                            third: 16 - result.dayOfWeek,
-                            forth: 23 - result.dayOfWeek,
-                            five: 30 - result.dayOfWeek,
-                            six: 37 - result.dayOfWeek
-                        }
-                    })*!/
-                });
-            });
-        };*/
-        /*function getCalendar() {
-            $(document).ready(function () {
-                $.getJSON("/calendar", function (result, status) {
-                    var v = new Vue({
-                        el: '#calendar',
-                        data: {
-                            year: result.year,
-                            month: result.month,
-                            today: result.today,
-                            dayOfWeek: result.dayOfWeek,
-                            cDays: result.cDays,
-                            second: 9 - result.dayOfWeek,
-                            third: 16 - result.dayOfWeek,
-                            forth: 23 - result.dayOfWeek,
-                            five: 30 - result.dayOfWeek,
-                            six: 37 - result.dayOfWeek
-                        }
-                    })
-                });
-            });
-        };*/
-        getMonthCalendar(thismonth);
-        // getCalendar();
-
+          var today = new Date();//获得当前日期
+          var thisMonth = today.getMonth() + 1;
+          $(document).ready(function(){
+              $.ajax({
+                  type : 'get',
+                  async : true,
+                  url : '/getCalendar?month='+thisMonth,
+                  cache : false,
+                  success : function(data) {
+                      $("#calendar").html(data);
+                  }
+              });
+          });
+          function getMonthCalendar(month){
+              $.ajax({
+                  type : 'get',
+                  async : true,
+                  url : '/getCalendar?month='+month,
+                  cache : false,
+                  success : function(data) {
+                      $("#calendar").html(data);
+                  }
+              });
+          }
       </script>
-
       <script>
         $(document).ready(function(){
             $('ul.nav > li').click(function (e) {

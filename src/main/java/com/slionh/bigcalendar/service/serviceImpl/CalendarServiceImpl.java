@@ -60,43 +60,40 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public MyCalendar getMonthCalendar(Integer month) {
-//        获取某月的calendar
+        System.out.println("---------------------------");
         MyCalendar myCalendar=new MyCalendar();
         Date date=new Date();
-        date.setMonth(month-1);
+        Calendar calendar = Calendar.getInstance();
 
-//        mycalendar设置年月日
-        myCalendar.setYear(date.getYear()+1900);
+        calendar.set(date.getYear()+1900,month-1,1);
+
+        myCalendar.setYear(calendar.get(Calendar.YEAR));
         myCalendar.setMonth(month);
         myCalendar.setToday(date.getDate());
-        System.out.println(myCalendar.toString());
-
-//        使用calendar类获取设置的年月的天数
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
-
+        int dayOfWeek=calendar.get(Calendar.DAY_OF_WEEK)-1;
+        if (dayOfWeek==0)
+            dayOfWeek=7;
+        myCalendar.setDayOfWeek(dayOfWeek);
 
         Integer days=calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         System.out.println("有"+days+"天");
-//        System.out.println(calendar.getActualMaximum(Calendar.DAY_OF_WEEK));
-        Integer dayOfWeek=calendar.DAY_OF_WEEK;
-        myCalendar.setDayOfWeek(dayOfWeek);
+        myCalendar.setDays(days);
 
-//        按当月天数封装cDayList
+        Date temp=calendar.getTime();
         List<CDay> cDayList=new ArrayList<CDay>();
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         for(int i=1;i<=days;i++){
-            date.setDate(i);
-            List<Event> events= cDayService.getEventByDate(df.format(date));
+            temp.setDate(i);
+            List<Event> events= cDayService.getEventByDate(df.format(temp));
             CDay cDay=new CDay();
             cDay.setDay(i);
             cDay.setEvent(events);
             cDayList.add(cDay);
         }
 
-//        myCalendar当前时间calendar生产
         myCalendar.setcDays(cDayList);
+        System.out.println(myCalendar.toString());
+        System.out.println("---------------------------");
 
         return myCalendar;
     }

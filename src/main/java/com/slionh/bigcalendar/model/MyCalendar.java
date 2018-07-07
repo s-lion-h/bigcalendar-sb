@@ -10,6 +10,16 @@ public class MyCalendar {
     private Integer month;
     private Integer today;
     private Integer dayOfWeek;
+    private Integer days;
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
+    }
+
     private List<CDay> cDays;
 
     public Integer getYear() {
@@ -59,6 +69,7 @@ public class MyCalendar {
                 ", month=" + month +
                 ", today=" + today +
                 ", dayOfWeek=" + dayOfWeek +
+                ", days=" + days +
                 ", cDays=" + cDays +
                 '}';
     }
