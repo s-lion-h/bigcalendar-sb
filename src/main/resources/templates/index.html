@@ -25,9 +25,6 @@
     .popover.left {
         margin-left: -65px;
     }
-    .event-tab{
-        color: #ff99cc;
-    }
     .loading {
     　　position:fixed;
     　　width:100%;
@@ -44,7 +41,7 @@
         font-size: 80px;
     }
     .myEvent{
-        color: #ff3b2f;
+        color: #ff99cc;
         font-size: 18px;
         font-weight: bolder;
     }
@@ -112,9 +109,13 @@
       <div th:include="nav::side"></div>
 
 
+
       <script type="text/javascript">
           var today = new Date();//获得当前日期
           var thisMonth = today.getMonth() + 1;
+
+          $('ul.nav > li:nth-child('+(thisMonth+1)+')').addClass('active');
+
           $(document).ready(function(){
               $.ajax({
                   type : 'get',
@@ -150,15 +151,6 @@
                 $('ul.nav > li').removeClass('active');
                 $(this).addClass('active');
             });
-        });
-        $(function (){
-            $("#button-tanchu").popover();
-        });
-        $(function (){
-            $("#button-tanchu2").popover();
-        });
-        $(function (){
-            $("#button-tanchu3").popover();
         });
       </script>
     </div>

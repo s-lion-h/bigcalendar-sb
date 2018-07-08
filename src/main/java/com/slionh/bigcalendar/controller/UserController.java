@@ -27,6 +27,7 @@ public class UserController {
             request.getSession().setAttribute("user",tryloginUser);
             return "redirect:/";
         }else{
+
             return "error";
         }
     }

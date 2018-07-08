@@ -60,7 +60,7 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public MyCalendar getMonthCalendar(Integer month) {
-        System.out.println("---------------------------");
+//        System.out.println("---------------------------");
         MyCalendar myCalendar=new MyCalendar();
         Date date=new Date();
         Calendar calendar = Calendar.getInstance();
@@ -76,7 +76,7 @@ public class CalendarServiceImpl implements CalendarService {
         myCalendar.setDayOfWeek(dayOfWeek);
 
         Integer days=calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        System.out.println("有"+days+"天");
+//        System.out.println("有"+days+"天");
         myCalendar.setDays(days);
 
         Date temp=calendar.getTime();
@@ -92,8 +92,7 @@ public class CalendarServiceImpl implements CalendarService {
         }
 
         myCalendar.setcDays(cDayList);
-        System.out.println(myCalendar.toString());
-        System.out.println("---------------------------");
+//        System.out.println(myCalendar.toString());
 
         return myCalendar;
     }

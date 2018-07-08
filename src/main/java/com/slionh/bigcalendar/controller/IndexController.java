@@ -1,6 +1,7 @@
 package com.slionh.bigcalendar.controller;
 
 import com.slionh.bigcalendar.model.MyCalendar;
+import com.slionh.bigcalendar.model.User;
 import com.slionh.bigcalendar.service.CDayService;
 import com.slionh.bigcalendar.service.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class IndexController {
     @Autowired
     private CalendarService calendarService;
     @RequestMapping("/")
-    public String toIndex()
+    public String toIndex(HttpServletRequest request)
     {
         return "index";
     }

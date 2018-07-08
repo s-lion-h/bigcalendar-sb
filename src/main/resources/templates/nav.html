@@ -11,27 +11,42 @@
 
         <!-- user-head-->
         <li>
-            <!--<a class='btn' data-toggle='modal' data-target='#myLogModal'>-->
-                <!--<img src='img/head.jpg' class='img-rounded userimg'>-->
-                <!--<br/>${user.username}-->
-            <!--</a>-->
-            <a class='btn' data-toggle='modal' data-target='#myModal'>
-                <img src='img/head.jpg' class='img-rounded userimg'>
-                <br/>login
-            </a>
-
+            <th:block th:if="${session.user} == null">
+                <a class='btn' data-toggle='modal' data-target='#myModal'>
+                    <img src='img/head.jpg' class='img-rounded userimg'>
+                    <br/>login
+                </a>
+            </th:block>
+            <th:block th:if="${session.user} != null">
+                <a class='btn' data-toggle='modal' data-target='#myLogModal'>
+                    <img src='img/head.jpg' class='img-rounded userimg'>
+                    <br/><p th:text="${session.user.username}"></p>
+                </a>
+            </th:block>
         </li>
 
         <!-- write状态-->
         <li>
-            <a class='btn' data-toggle='modal' data-target='#addevent'>
+            <!--<a class='btn' data-toggle='modal' data-target='#addevent'>
                 <img src="img/write.jpg" class="img-rounded">
                 <br/>write
-            </a>
-            <!--<a class='btn' data-toggle='modal' data-target='#myModal'>-->
-                <!--<img src="img/write.jpg" class="img-rounded">-->
-                <!--<br/>write-->
-            <!--</a>-->
+            </a>-->
+            <!--<a class='btn' data-toggle='modal' data-target='#myModal'>
+                <img src="img/write.jpg" class="img-rounded">
+                <br/>write
+            </a>-->
+            <th:block th:if="${session.user} == null">
+                <a class='btn' data-toggle='modal' data-target='#myModal'>
+                    <img src="img/write.jpg" class="img-rounded">
+                    <br/>write
+                </a>
+            </th:block>
+            <th:block th:if="${session.user} != null">
+                <a class='btn' data-toggle='modal' data-target='#addevent'>
+                    <img src="img/write.jpg" class="img-rounded">
+                    <br/>write
+                </a>
+            </th:block>
         </li>
 
         <!-- search的組件 -->
@@ -101,9 +116,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#" target="_blank"><button type="button" class="btn btn-default">admin</button></a>
+                <!--<a href="#" target="_blank"><button type="button" class="btn btn-default">admin</button></a>-->
                 <a href="#"><button type="button" class="btn btn-default">登出</button></a>
-                <button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>
+                <!--<button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>-->
                 <a href="/regist" target="_blank"><button type="button" class="btn btn-primary">注册</button> </a>
             </div>
         </div>
