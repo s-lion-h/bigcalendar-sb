@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class CDay {
     private Integer day;
+    private String date8;
     private List<Event> event;
 
     public Integer getDay() {
@@ -17,11 +18,28 @@ public class CDay {
         this.day = day;
     }
 
+    public String getDate8() {
+        return date8;
+    }
+
+    public void setDate8(String date8) {
+        this.date8 = date8;
+    }
+
     public List<Event> getEvent() {
         return event;
     }
 
     public void setEvent(List<Event> event) {
         this.event = event;
+    }
+
+    @Override
+    public String toString() {
+        return "CDay{" +
+                "day=" + day +
+                ", date8='" + date8 + '\'' +
+                ", event=" + event +
+                '}';
     }
 }

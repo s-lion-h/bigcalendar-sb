@@ -10,6 +10,16 @@
                     <h3></h3>
                     <ul class='list-unstyled'>
                         <li th:each="event:${calendar.cDays[j-1].event}" th:text="${event.event}" class="myEvent"></li>
+                        <th:block th:if="${myRepositories!=null}">
+                            <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[j-1].date8)}">
+                                <li th:text="${repository.name}" class="myEvent"></li>
+                            </th:block>
+                        </th:block>
+                        <th:block th:if="${repositories!=null}">
+                            <th:block th:each="repository:${repositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[j-1].date8)}">
+                                <li th:text="${repository.name}" class="myRepository"></li>
+                            </th:block>
+                        </th:block>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -21,6 +31,16 @@
                     <h3></h3>
                     <ul class='list-unstyled'>
                         <li th:each="event:${calendar.cDays[9-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
+                        <th:block th:if="${myRepositories!=null}" >
+                            <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[9-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myEvent"></li>
+                            </th:block>
+                        </th:block>
+                        <th:block th:if="${repositories!=null}">
+                            <th:block th:each="repository:${repositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[9-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myRepository"></li>
+                            </th:block>
+                        </th:block>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -32,6 +52,16 @@
                     <h3></h3>
                     <ul class='list-unstyled'>
                         <li th:each="event:${calendar.cDays[16-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
+                        <th:block th:if="${myRepositories!=null}">
+                            <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[16-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myEvent"></li>
+                            </th:block>
+                        </th:block>
+                        <th:block th:if="${repositories!=null}">
+                            <th:block th:each="repository:${repositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[16-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myRepository"></li>
+                            </th:block>
+                        </th:block>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -43,6 +73,16 @@
                     <h3></h3>
                     <ul class='list-unstyled'>
                         <li th:each="event:${calendar.cDays[23-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
+                        <th:block th:if="${myRepositories!=null}">
+                            <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[23-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myEvent"></li>
+                            </th:block>
+                        </th:block>
+                        <th:block th:if="${repositories!=null}">
+                            <th:block th:each="repository:${repositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[23-calendar.dayOfWeek-2+j].date8)}">
+                                <li th:text="${repository.name}" class="myRepository"></li>
+                            </th:block>
+                        </th:block>
                         <li>The event will come here</li>
                         <li>The events will come here</li>
                     </ul>
@@ -55,6 +95,16 @@
                         <h3></h3>
                         <ul class='list-unstyled'>
                             <li th:each="event:${calendar.cDays[30-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
+                            <th:block th:if="${myRepositories!=null}">
+                                <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[30-calendar.dayOfWeek-2+j].date8)}">
+                                    <li th:text="${repository.name}" class="myEvent"></li>
+                                </th:block>
+                            </th:block>
+                            <th:block th:if="${repositories!=null}">
+                                <th:block th:each="repository:${repositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[30-calendar.dayOfWeek-2+j].date8)}">
+                                    <li th:text="${repository.name}" class="myRepository"></li>
+                                </th:block>
+                            </th:block>
                             <li>The event will come here</li>
                             <li>The events will come here</li>
                         </ul>
@@ -68,6 +118,16 @@
                         <h3></h3>
                         <ul class='list-unstyled'>
                             <li th:each="event:${calendar.cDays[37-calendar.dayOfWeek-2+j].event}" th:text="${event.event}" class="myEvent"></li>
+                            <th:block th:if="${myRepositories!=null}">
+                                <th:block th:each="repository:${myRepositories}" th:if="${#strings.startsWith(repository.created_at,calendar.cDays[37-calendar.dayOfWeek-2+j].date8)}">
+                                    <li th:text="${repository.name}" class="myEvent"></li>
+                                </th:block>
+                            </th:block>
+                            <th:block th:if="${repositories!=null}">
+                                <th:block th:each="repository:${repositories}"  th:if="${#strings.startsWith(repository.created_at,calendar.cDays[37-calendar.dayOfWeek-2+j].date8)}">
+                                    <li th:text="${repository.name}" class="myRepository"></li>
+                                </th:block>
+                            </th:block>
                             <li>The event will come here</li>
                             <li>The events will come here</li>
                         </ul>

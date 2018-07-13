@@ -87,6 +87,7 @@ public class CalendarServiceImpl implements CalendarService {
             List<Event> events= cDayService.getEventByDate(df.format(temp));
             CDay cDay=new CDay();
             cDay.setDay(i);
+            cDay.setDate8(df.format(temp));
             cDay.setEvent(events);
             cDayList.add(cDay);
         }
