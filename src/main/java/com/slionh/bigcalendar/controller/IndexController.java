@@ -22,6 +22,8 @@ import java.util.concurrent.ExecutionException;
  */
 @Controller
 public class IndexController {
+    private static final String TOKEN="ba40f1e9fd134fb75116a95e49b5b90178a296b3";
+
     @Autowired
     private CDayService cDayService;
     @Autowired
@@ -37,7 +39,8 @@ public class IndexController {
 //    }
 
     @RequestMapping("/getCalendar")
-    public ModelAndView getTodayCalendarPage(ModelAndView modelAndView,Integer month,HttpServletRequest request,HttpServletResponse response){
+    public ModelAndView getTodayCalendarPage(ModelAndView modelAndView,Integer month,HttpServletRequest request,HttpServletResponse response)
+            throws ExecutionException, InterruptedException {
         if (month==null){
             MyCalendar myCalendar= calendarService.getCalendar();
             modelAndView.addObject("calendar",myCalendar);
@@ -55,20 +58,15 @@ public class IndexController {
         if(user!=null){
             String username="echisan";
             List<Repository> repositories= null;
-            try {
-                repositories = GitUtil.getThreadFollowingRepo(username,"");
-//                for (Repository repository:repositories){
-//                    System.out.println(repositories.toString());
-//                }
-//                repositories = GitUtil.getFollowingRepo(username,"275f2dedd1c1fe7e676dcb56c753c1a76101b0d5");
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            try{
+                repositories = GitUtil.getThreadFollowingRepo(username,TOKEN);
+    //            repositories = GitUtil.getFollowingRepo(username,TOKEN);
+                List<Repository> myRepositories=GitUtil.getRepositoryLists(username,TOKEN);
+                modelAndView.addObject("repositories",repositories);
+                modelAndView.addObject("myRepositories",myRepositories);
+            }catch (Exception e){
+                System.out.println("api请求次数过多或token异常");
             }
-            List<Repository> myRepositories=GitUtil.getRepositoryLists(username,"");
-            modelAndView.addObject("repositories",repositories);
-            modelAndView.addObject("myRepositories",myRepositories);
         }
 
         modelAndView.setViewName("calendarTable");

@@ -129,9 +129,10 @@
                   cache : false,
                   success : function(data) {
                       $("#calendar").html(data);
+                      $("#loading").fadeOut();
+
                   }
               });
-              $("#loading").fadeOut();
           });
           function getMonthCalendar(month){
               $("#calendar").html("<div id=\"loading\" class=\"loading dates-content table-responsive\">\n" +
@@ -144,9 +145,10 @@
                   cache : false,
                   success : function(data) {
                       $("#calendar").html(data);
+                      $(".loading").fadeOut();
+
                   }
               });
-              $(".loading").fadeOut();
           }
       </script>
       <script>
