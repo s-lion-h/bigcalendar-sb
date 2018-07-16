@@ -1,0 +1,107 @@
+<table id="calendar" class="table">
+    <tbody>
+    <tr v-for="m in 6">
+        <template v-if="m==1">
+            <td v-for="n in dayOfWeek-1">&nbsp;</td>
+            <td v-for="i in 8-dayOfWeek">
+                <h2>{{cDays[i-1].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[i-1].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+        <template v-if="m==2">
+            <td v-for="i in 7">
+                <h2>{{cDays[second-2+i].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[second-2+i].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+        <template v-if="m==3">
+            <td v-for="i in 7">
+                <h2>{{cDays[third-2+i].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[third-2+i].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+        <template v-if="m==4">
+            <td v-for="i in 7">
+                <h2>{{cDays[forth-2+i].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[forth-2+i].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+        <template v-if="m==5">
+            <td v-for="i in 7">
+                <h2>{{cDays[five-2+i].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[five-2+i].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+        <template v-if="m==6">
+            <td v-for="(dDays.length-six)">
+                <h2>{{cDays[six-2+1].day}}</h2>
+                <h3></h3>
+                <ul class='list-unstyled'>
+                    <li v-for="event in cDays[six-2+1].event" class="myEvent">
+                        {{event.event}}
+                    </li>
+                    <li>The event will come here</li>
+                    <li>The events will come here</li>
+                </ul>
+            </td>
+        </template>
+    </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getJSON("/calendar", function (result, status) {
+            var v = new Vue({
+                el: '#calendar',
+                data: {
+                    year: result.year,
+                    month: result.month,
+                    today: result.today,
+                    dayOfWeek: result.dayOfWeek,
+                    cDays: result.cDays,
+                    second: 9-result.dayOfWeek,
+                    third: 16-result.dayOfWeek,
+                    forth: 23-result.dayOfWeek,
+                    five: 30-result.dayOfWeek,
+                    six: 37-result.dayOfWeek
+                }
+            })
+        });
+    });
+</script>

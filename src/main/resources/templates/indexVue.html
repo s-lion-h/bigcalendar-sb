@@ -1,0 +1,267 @@
+<!--  Created by IntelliJ IDEA.
+  User: s lion h
+  Date: 2018/4/17
+  Time: 23:11
+  To change this template use File | Settings | File Templates.-->
+<html xmlns:th="http://www.thumeleaf.org">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Big Calendar</title>
+
+<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<!-- Google Font embed -->
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Ubuntu:300,400,500,700" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+
+<style type="text/css">
+    .modal-contant{
+        background: #fff;
+    }
+    .popover.left {
+        margin-left: -65px;
+    }
+    .loading {
+        　　position:fixed;
+        　　width:100%;
+        　　height:100%;
+        background:rgba(153,153,153,0.2);
+        color:#FFF;
+        top:0px;
+    }
+    .inMiddle{
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+        text-align:center;
+        font-size: 80px;
+    }
+    .myEvent{
+        color: #ff99cc;
+        font-size: 18px;
+        font-weight: bolder;
+    }
+    .myRepository{
+        color: #0b90ff;
+        font-size: 15px;
+        font-weight: bolder;
+    }
+</style>
+</head>
+
+
+
+<body  data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+<main class="container-fluid main-container">
+    <!-- main shows -->
+    <div class="row" id="calendar">
+        <div class="col-md-2 col-sm-2 month-slider">
+            <!-- left data -->
+            <nav class="navbar" id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="">&nbsp;</a></li>
+                    <li ><a @click="getMonth(1)">January</a></li>
+                    <li ><a @click="getMonth(2)">February</a></li>
+                    <li ><a @click="getMonth(3)">March</a></li>
+                    <li ><a @click="getMonth(4)">April</a></li>
+                    <li ><a @click="getMonth(5)">May</a></li>
+                    <li ><a @click="getMonth(6)">June</a></li>
+                    <li ><a @click="getMonth(7)">July</a></li>
+                    <li ><a @click="getMonth(8)">August</a></li>
+                    <li ><a @click="getMonth(9)">September</a></li>
+                    <li ><a @click="getMonth(10)">October</a></li>
+                    <li ><a @click="getMonth(11)">November</a></li>
+                    <li ><a @click="getMonth(12)">December</a></li>
+                    <li >&nbsp;</li>
+                    <li >&nbsp;</li>
+                    <li >&nbsp;</li>
+                    <li >&nbsp;</li>
+                    <li class="text-center">粤ICP备17096671号</li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- total on middle -->
+        <div class="col-md-9 col-sm-9 date-container">
+            <!-- The days are listed on top -->
+            <div class="table-responsive days-headings">
+                <table class="table">
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>T</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>S</th>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="dates-content table-responsive">
+                <table class="table">
+                <!--<table id="calendar" class="table">-->
+                    <tbody>
+                    <tr v-for="m in 6">
+                        <template v-if="m==1">
+                            <td v-for="n in dayOfWeek-1">&nbsp;</td>
+                            <td v-for="i in 8-dayOfWeek">
+                                <h2>{{cDays[i-1].day}}</h2>
+                                <h3></h3>
+                                <ul class='list-unstyled'>
+                                    <li v-for="event in cDays[i-1].event" class="myEvent">
+                                        {{event.event}}
+                                    </li>
+                                    <li>The event will come here</li>
+                                    <li>The events will come here</li>
+                                </ul>
+                            </td>
+                        </template>
+                        <template v-if="m==2">
+                            <td v-for="i in 7">
+                                <h2>{{cDays[second-2+i].day}}</h2>
+                                <h3></h3>
+                                <ul class='list-unstyled'>
+                                    <li v-for="event in cDays[second-2+i].event" class="myEvent">
+                                        {{event.event}}
+                                    </li>
+                                    <li>The event will come here</li>
+                                    <li>The events will come here</li>
+                                </ul>
+                            </td>
+                        </template>
+                        <template v-if="m==3">
+                            <td v-for="i in 7">
+                                <h2>{{cDays[third-2+i].day}}</h2>
+                                <h3></h3>
+                                <ul class='list-unstyled'>
+                                    <li v-for="event in cDays[third-2+i].event" class="myEvent">
+                                        {{event.event}}
+                                    </li>
+                                    <li>The event will come here</li>
+                                    <li>The events will come here</li>
+                                </ul>
+                            </td>
+                        </template>
+                        <template v-if="m==4">
+                            <td v-for="i in 7">
+                                <h2>{{cDays[forth-2+i].day}}</h2>
+                                <h3></h3>
+                                <ul class='list-unstyled'>
+                                    <li v-for="event in cDays[forth-2+i].event" class="myEvent">
+                                        {{event.event}}
+                                    </li>
+                                    <li>The event will come here</li>
+                                    <li>The events will come here</li>
+                                </ul>
+                            </td>
+                        </template>
+                        <template v-if="m==5">
+                            <td v-for="i in 7">
+                                <template v-if="((m-1)*7+i-dayOfWeek+1) <= days">
+                                    <h2>{{cDays[five-2+i].day}}</h2>
+                                    <h3></h3>
+                                    <ul class='list-unstyled'>
+                                        <li v-for="event in cDays[five-2+i].event" class="myEvent">
+                                            {{event.event}}
+                                        </li>
+                                        <li>The event will come here</li>
+                                        <li>The events will come here</li>
+                                    </ul>
+                                </template>
+                            </td>
+                        </template>
+                        <template v-if="m==6">
+                            <td v-for="i in 7">
+                                <template v-if="((m-1)*7+i-dayOfWeek+1) <= days">
+                                    <h2>{{cDays[six-2+i].day}}</h2>
+                                    <h3></h3>
+                                    <ul class='list-unstyled'>
+                                        <li v-for="event in cDays[six-2+i].event" class="myEvent">
+                                            {{event.event}}
+                                        </li>
+                                        <li>The event will come here</li>
+                                        <li>The events will come here</li>
+                                    </ul>
+                                </template>
+                            </td>
+                        </template>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <!--右侧个人信息栏-->
+        <div th:include="nav::side"></div>
+
+
+
+
+    </div>
+</main>
+</body>
+<script>
+    var today = new Date();//获得当前日期
+    var thisMonth = today.getMonth() + 1;
+    $('ul.nav > li:nth-child('+(thisMonth+1)+')').addClass('active');
+    $(document).ready(function(){
+        $('ul.nav > li').click(function (e) {
+            e.preventDefault();
+            $('ul.nav > li').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $.ajaxSettings.async = false;
+    var result;
+    $.getJSON("/getJsonCalendar",function (cresult, status) {
+        result=cresult;
+        console.log(result);
+    })
+
+    var v = new Vue({
+        el: '#calendar',
+        data: {
+            year: result.year,
+            month: result.month,
+            today: result.today,
+            dayOfWeek: result.dayOfWeek,
+            days:result.days,
+            cDays: result.cDays,
+            second: 9-result.dayOfWeek,
+            third: 16-result.dayOfWeek,
+            forth: 23-result.dayOfWeek,
+            five: 30-result.dayOfWeek,
+            six: 37-result.dayOfWeek
+        },
+        methods:{
+            getMonth:function(month){
+                var getMessage;
+                $.getJSON("/getMonthJsonCalendar?month="+month,function (result, status) {
+                    getMessage=result;
+                    console.log(getMessage);
+                })
+                this.year= getMessage.year;
+                this.month= getMessage.month;
+                this.today= getMessage.today;
+                this.dayOfWeek= getMessage.dayOfWeek;
+                this.cDays= getMessage.cDays;
+                this.days=getMessage.days;
+                this.second= 9-getMessage.dayOfWeek;
+                this.third= 16-getMessage.dayOfWeek;
+                this.forth= 23-getMessage.dayOfWeek;
+                this.five= 30-getMessage.dayOfWeek;
+                this.six= 37-getMessage.dayOfWeek;
+            }
+        }
+    })
+</script>
+</html>

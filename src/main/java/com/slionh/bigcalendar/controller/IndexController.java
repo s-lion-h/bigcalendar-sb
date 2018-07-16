@@ -82,7 +82,7 @@ public class IndexController {
     @RequestMapping("/getJsonCalendar")
     @ResponseBody
     public MyCalendar getCalendar(){
-        MyCalendar myCalendar= calendarService.getCalendar();
+        MyCalendar myCalendar= calendarService.getNowCalendar();
         System.out.println(myCalendar.toString());
         return myCalendar;
     }

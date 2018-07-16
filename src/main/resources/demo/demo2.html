@@ -1,0 +1,79 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<div id="app">
+    <div>
+        <router-link to="/">首页</router-link>
+        <router-link to="/user">用户管理</router-link>
+        <router-link to="/post">帖子管理</router-link>
+    </div>
+    <div>
+        <router-view name="sidebar"></router-view>
+        <router-view name="content"></router-view>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+var routers=[
+    {
+        path:'/',
+        component:{
+            template:`
+            <div>
+                <h1>首页</h1>
+            </div>
+            `,
+        }
+    },
+    {
+        path:'/user',
+        components:{
+            sidebar:{
+                template:`
+                <div>
+                    <ul>
+                        <li>用户管理</li>
+                        <li>权限管理</li>
+                    </ul>
+                </div>
+                `
+            },
+            content:{
+                template:`
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet blanditiis corporis eaque facilis harum impedit quasi recusandae! Aliquid, aut delectus dicta dignissimos dolore fuga pariatur placeat qui quo ullam voluptatibus.</div>
+                `
+            },
+        }
+    },
+    {
+        path:'/post',
+        components:{
+            sidebar:{
+                template:`
+                <div>
+                    <ul>
+                        <li>帖子列表</li>
+                        <li>标签管理</li>
+                    </ul>
+                </div>
+                `
+            },
+            content:{
+                template:`
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet blanditiis corporis eaque facilis harum impedit quasi recusandae! Aliquid, aut delectus dicta dignissimos dolore fuga pariatur placeat qui quo ullam voluptatibus.</div>
+                `
+            },
+        }
+    },
+]
+
+var router=new VueRouter({
+    routes:routers,
+});
+
+new Vue({
+    el:'#app',
+    router:router,
+});
+</script>

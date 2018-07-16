@@ -22,6 +22,7 @@ public class CalendarServiceImpl implements CalendarService {
     @Autowired
     private CDayService cDayService;
 
+    @Deprecated
     @Override
     public MyCalendar getCalendar() {
         MyCalendar myCalendar=new MyCalendar();
@@ -56,6 +57,12 @@ public class CalendarServiceImpl implements CalendarService {
         myCalendar.setcDays(cDayList);
 
         return myCalendar;
+    }
+
+    @Override
+    public MyCalendar getNowCalendar() {
+        Date date=new Date();
+        return getMonthCalendar(date.getMonth()+1);
     }
 
     @Override

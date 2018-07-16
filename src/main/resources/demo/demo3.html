@@ -1,0 +1,76 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<div id="app">
+    <div>
+        <router-link to="/">首页</router-link>
+        <router-link to="/login">登陆</router-link>
+        <router-link to="/post">帖子管理</router-link>
+    </div>
+    <div>
+        <router-view></router-view>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var routes=[
+        {
+            path:'/',
+            component:{
+                template:`<h1>首页</h1>`
+            }
+        },
+        {
+            path:'/login',
+            component:{
+                template:`<h1>登陆</h1>`
+            }
+        },
+        {
+            path:'/post',
+            meta:{
+                login_required:true
+            },
+            component:{
+                template:`<div>
+                        <h1>帖子管理</h1>
+                        <router-link to="rain" append>后座</router-link>
+                        <router-view></router-view>
+                        </div>`,
+
+            },
+            children:[
+                {
+                    path:'rain',
+                    component:{
+                        template:`<h2>yu tian hou</h2>`
+                    }
+                }
+            ]
+        },
+    ]
+
+    var router=new VueRouter({
+        routes:routes,
+    });
+
+    router.beforeEach(function (to,from,next) {
+        var logged_in=false;
+        if (!logged_in&&to.match.some(function (item) {
+            return item.meta.login_required;
+        }))
+            next('/login');
+        else
+            next();
+    });
+
+    router.afterEach(function (to,from) {
+        console.log('to:'+to);
+        console.log('from:'+from);
+    })
+
+    new Vue({
+        el:'#app',
+        router:router,
+    });
+</script>
