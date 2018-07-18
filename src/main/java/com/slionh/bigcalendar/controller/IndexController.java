@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /*
@@ -31,7 +33,7 @@ public class IndexController {
     @RequestMapping("/")
     public String toIndex(HttpServletRequest request)
     {
-        return "index";
+        return "indexVue";
     }
 //    @RequestMapping("/nav")
 //    public String toNav(){
@@ -94,5 +96,17 @@ public class IndexController {
         MyCalendar myCalendar= calendarService.getMonthCalendar(month);
         System.out.println(myCalendar.toString());
         return myCalendar;
+    }
+
+    @RequestMapping("/getMonthJsonUser")
+    @ResponseBody
+    public Map getDemo(){
+        Map map=new HashMap();
+        User user=new User();
+        user.setEmail("huyungui@11.com");
+        user.setUsername("huyungui");
+        map.put("user",user);
+        map.put("calendar",calendarService.getMonthCalendar(7));
+        return map;
     }
 }

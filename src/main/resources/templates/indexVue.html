@@ -218,14 +218,12 @@
             $(this).addClass('active');
         });
     });
-</script>
-<script type="text/javascript">
+
     $.ajaxSettings.async = false;
     var result;
-    $.getJSON("/getJsonCalendar",function (cresult, status) {
+    $.getJSON("/getMonthJsonCalendar?month="+thisMonth,function (cresult, status) {
         result=cresult;
-        console.log(result);
-    })
+    });
 
     var v = new Vue({
         el: '#calendar',
@@ -248,7 +246,7 @@
                 $.getJSON("/getMonthJsonCalendar?month="+month,function (result, status) {
                     getMessage=result;
                     console.log(getMessage);
-                })
+                });
                 this.year= getMessage.year;
                 this.month= getMessage.month;
                 this.today= getMessage.today;
