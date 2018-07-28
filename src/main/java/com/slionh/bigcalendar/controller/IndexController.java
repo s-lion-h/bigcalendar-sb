@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutionException;
  */
 @Controller
 public class IndexController {
-    private static final String TOKEN="ba40f1e9fd134fb75116a95e49b5b90178a296b3";
+    private static final String TOKEN="6a0abf2f1b26f6d6c4161b9d0a8802c351179c46";
 
     @Autowired
     private CDayService cDayService;
@@ -108,5 +108,15 @@ public class IndexController {
         map.put("user",user);
         map.put("calendar",calendarService.getMonthCalendar(7));
         return map;
+    }
+
+    @RequestMapping("/elementui")
+    public String fff(){
+        return "elementui";
+    }
+
+    @RequestMapping("/admin")
+    public String toadmin(){
+        return "admin";
     }
 }
