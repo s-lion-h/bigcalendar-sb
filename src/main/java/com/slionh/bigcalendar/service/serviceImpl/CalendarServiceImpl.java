@@ -5,6 +5,7 @@ import com.slionh.bigcalendar.model.Event;
 import com.slionh.bigcalendar.model.MyCalendar;
 import com.slionh.bigcalendar.service.CDayService;
 import com.slionh.bigcalendar.service.CalendarService;
+import com.slionh.bigcalendar.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ import java.util.List;
 public class CalendarServiceImpl implements CalendarService {
     @Autowired
     private CDayService cDayService;
+    @Autowired
+    private EventService eventService;
 
     @Deprecated
     @Override
@@ -86,16 +89,31 @@ public class CalendarServiceImpl implements CalendarService {
 //        System.out.println("有"+days+"天");
         myCalendar.setDays(days);
 
+//        构造好的特定时间
         Date temp=calendar.getTime();
         List<CDay> cDayList=new ArrayList<CDay>();
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dfByEvent=new SimpleDateFormat("yyyy-MM");
+
+        List<Event> events=eventService.listMonthList(dfByEvent.format(temp));
+        for (Event event:events){
+            System.out.println(event.toString()  );
+        }
+
         for(int i=1;i<=days;i++){
             temp.setDate(i);
-            List<Event> events= cDayService.getEventByDate(df.format(temp));
+//            List<Event> events= cDayService.getEventByDate(df.format(temp));
             CDay cDay=new CDay();
             cDay.setDay(i);
             cDay.setDate8(df.format(temp));
-            cDay.setEvent(events);
+            List<Event> events1=new ArrayList<Event>();
+            for (Event event:events){
+                if (event.getDate().equals(df.format(temp))){
+                    events1.add(event);
+                }
+            }
+            cDay.setEvent(events1);
+//            cDay.setEvent(events);
             cDayList.add(cDay);
         }
 

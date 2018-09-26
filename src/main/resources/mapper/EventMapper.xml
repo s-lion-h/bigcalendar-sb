@@ -6,7 +6,7 @@
     <insert id="addEvent" parameterType="com.slionh.bigcalendar.model.Event" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO event (date,event,uid) VALUES (#{date},#{event},#{uid});
     </insert>
-    <select id="listMonthList" parameterType="String">
-        SELECT * FROM event where date like '${date}%'
+    <select id="listMonthList" parameterType="String" resultType="com.slionh.bigcalendar.model.Event">
+        SELECT * FROM event where date like '${monthAndYear}%'
     </select>
 </mapper>
