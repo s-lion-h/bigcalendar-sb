@@ -6,6 +6,8 @@ import com.slionh.bigcalendar.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /*
  * Create by s lion h on 2018/4/24
  */
@@ -17,6 +19,12 @@ public class EventServiceImpl implements EventService {
     public int addEvent(Event event) {
         System.out.println(event);
         return eventMapper.addEvent(event);
+    }
+
+    @Override
+    public List<Event> listMonthList(String monthAndYear) {
+        List<Event> events = eventMapper.listMonthList(monthAndYear);
+        return events;
     }
 
 }
