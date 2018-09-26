@@ -106,12 +106,14 @@
             <div class="dates-content table-responsive">
                 <table class="table">
                 <!--<table id="calendar" class="table">-->
-                    <tbody>
+                    <tbody class="text-center">
                     <tr v-for="m in 6">
                         <template v-if="m==1">
                             <td v-for="n in dayOfWeek-1">&nbsp;</td>
                             <td v-for="i in 8-dayOfWeek">
-                                <h2>{{cDays[i-1].day}}</h2>
+                                <!--<h2><a onclick="getDay(this)">{{cDays[i-1].day}}</a></h2>-->
+                                <h2><a @click="showDate($event)">{{cDays[i-1].day}}</a></h2>
+                                <!--<h2 class="btn btn-default">{{cDays[i-1].day}}</h2>-->
                                 <h3></h3>
                                 <ul class='list-unstyled'>
                                     <li v-for="event in cDays[i-1].event" class="myEvent">
@@ -121,10 +123,11 @@
                                     <li>The events will come here</li>
                                 </ul>
                             </td>
+                            </a>
                         </template>
                         <template v-if="m==2">
                             <td v-for="i in 7">
-                                <h2>{{cDays[second-2+i].day}}</h2>
+                                <h2><a @click="showDate($event)">{{cDays[second-2+i].day}}</a></h2>
                                 <h3></h3>
                                 <ul class='list-unstyled'>
                                     <li v-for="event in cDays[second-2+i].event" class="myEvent">
@@ -137,7 +140,7 @@
                         </template>
                         <template v-if="m==3">
                             <td v-for="i in 7">
-                                <h2>{{cDays[third-2+i].day}}</h2>
+                                <h2><a @click="showDate($event)">{{cDays[third-2+i].day}}</a></h2>
                                 <h3></h3>
                                 <ul class='list-unstyled'>
                                     <li v-for="event in cDays[third-2+i].event" class="myEvent">
@@ -150,7 +153,7 @@
                         </template>
                         <template v-if="m==4">
                             <td v-for="i in 7">
-                                <h2>{{cDays[forth-2+i].day}}</h2>
+                                <h2><a @click="showDate($event)">{{cDays[forth-2+i].day}}</a></h2>
                                 <h3></h3>
                                 <ul class='list-unstyled'>
                                     <li v-for="event in cDays[forth-2+i].event" class="myEvent">
@@ -164,7 +167,7 @@
                         <template v-if="m==5">
                             <td v-for="i in 7">
                                 <template v-if="((m-1)*7+i-dayOfWeek+1) <= days">
-                                    <h2>{{cDays[five-2+i].day}}</h2>
+                                    <h2><a @click="showDate($event)">{{cDays[five-2+i].day}}</a></h2>
                                     <h3></h3>
                                     <ul class='list-unstyled'>
                                         <li v-for="event in cDays[five-2+i].event" class="myEvent">
@@ -179,7 +182,7 @@
                         <template v-if="m==6">
                             <td v-for="i in 7">
                                 <template v-if="((m-1)*7+i-dayOfWeek+1) <= days">
-                                    <h2>{{cDays[six-2+i].day}}</h2>
+                                    <h2><a @click="showDate($event)">{{cDays[six-2+i].day}}</a></h2>
                                     <h3></h3>
                                     <ul class='list-unstyled'>
                                         <li v-for="event in cDays[six-2+i].event" class="myEvent">
@@ -258,8 +261,47 @@
                 this.forth= 23-getMessage.dayOfWeek;
                 this.five= 30-getMessage.dayOfWeek;
                 this.six= 37-getMessage.dayOfWeek;
+            },
+            showDate(event){
+                /*
+                * 用事件+innertext+vue的data
+                * 获取当前选择的日期
+                * */
+                // console.log(this.year)
+                // console.log(this.month)
+                // console.log(event.currentTarget.innerText)
+
+                var myDate=new Date()
+                myDate.setFullYear(this.year,this.month-1,event.currentTarget.innerText)
+                // console.log(new Date().Format("yyyy-MM-dd"))
+                // console.log(myDate.Format("yyyy-MM-dd"))
+                console.log(getDateFormatDate(myDate))
+
             }
         }
     })
+    
+    
+    // 获取点击日期
+    function getDay(day) {
+        // alert($(day).val)
+        console.log(day.innerText)
+        
+    }
+
+    function getDateFormatDate(date) {
+        // var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = '0' + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = '0' + strDate;
+        }
+        var currentdate = year + '-' + month + '-' + strDate;
+        return currentdate;
+    }
 </script>
 </html>
