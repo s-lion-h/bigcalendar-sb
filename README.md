@@ -23,3 +23,7 @@ List<Owner> getFollowingList(String username,String token);
 List<Repository> getRepositoryLists(String username,String token)
 ```
 
+##  添加每日IPO信息
+> 每日的ipo查询，定期查询，yyyy-mm-dd
+
+![image](https://raw.githubusercontent.com/s-lion-h/bigcalendar-sb/master/image/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(216).png)
