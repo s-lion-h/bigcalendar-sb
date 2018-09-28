@@ -16,4 +16,9 @@ public class SpiderController {
     public List<IPOData> getipodata(){
         return IPODataUtil.getTimeIPO("1537372800","1537459199");
     }
+
+    @RequestMapping("getIPODatas")
+    public List<IPOData> getipodata(String start,String end){
+        return IPODataUtil.getTimeIPO(start,end);
+    }
 }

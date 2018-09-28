@@ -51,13 +51,24 @@
         font-weight: bolder;
     }
     #di_float{
-        width:300px;
+        width:280px;
         /*height:250px;*/
-        border:1px solid #f00;
+        border:1px solid #0b90ff;
         position:fixed;
         right:30px;
-        top:500px;
+        top:50%;
+        /*top:400px;*/
         background: #e1f4f9;
+    }
+    .ipos{
+        font-size: 26px;
+        margin-bottom: 0;
+        color: #88aaff;
+    }
+    #iposmsg{
+        font-size: 20px;
+        /*display: ;*/
+        /*visibility: hidden;*/
     }
 </style>
 </head>
@@ -216,17 +227,17 @@
 
         <!--信息栏-->
         <div id="di_float" class="row">
-            <h2 class="text-center">IPOs</h2>
+            <p class="text-center ipos">IPOs</p>
             <!--<ul>
                 <li v-for="ipo in ipolist">
                     {{ipo.company_name}}
                 </li>
             </ul>-->
-            <table class="table table-bordered table-hover ">
+            <table class="table table-bordered table-hover text-center">
                 <thead>
                 <tr>
-                    <td>company_name</td>
-                    <td>country</td>
+                    <td>公司名</td>
+                    <td>地区</td>
                     <td>img</td>
                 </tr>
                 </thead>
@@ -239,13 +250,12 @@
                 </tr>
                 </tbody>
             </table>
+            <div id="iposmsg" class="row ">
+                <p class="text-center text-danger">此日无IPO信息</p>
+            </div>
         </div>
-
-
-
     </div>
 </main>
-
 </body>
 <script>
     var today = new Date();//获得当前日期
@@ -258,13 +268,11 @@
             $(this).addClass('active');
         });
     });
-
     $.ajaxSettings.async = false;
     var result;
     $.getJSON("/getMonthJsonCalendar?month="+thisMonth,function (cresult, status) {
         result=cresult;
     });
-
     var v = new Vue({
         el: '#calendar',
         data: {
@@ -279,7 +287,8 @@
             forth: 23-result.dayOfWeek,
             five: 30-result.dayOfWeek,
             six: 37-result.dayOfWeek,
-            ipolist:[{"id":201,"code":"03690","company_name":"美团点评-Ｗ","company_name_en":"","country":"香港","country_id":"HK","flag_uri":"https://wpimg.wallstcn.com/05/c0/05/hongkong-2x.png","exchange_code":"","public_date":1537401600,"price_upper":"72.00","price_floor":"60.00","listed_price":"69.00","currency":"HKD","currency_name":"港元","shares":"480.27","market_value":"31697.72","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":207,"code":"BSVN","company_name":"Bank7","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"19.00","price_floor":"19.00","listed_price":"19.00","currency":"USD","currency_name":"美元","shares":"3.4","market_value":"64.6","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":204,"code":"EB","company_name":"Eventbrite","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"23.00","price_floor":"23.00","listed_price":"23.00","currency":"USD","currency_name":"美元","shares":"10.0","market_value":"230.0","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":199,"code":"ELAN","company_name":"Elanco动物健康","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"24.00","price_floor":"24.00","listed_price":"24.00","currency":"USD","currency_name":"美元","shares":"62.9","market_value":"1509.6","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false}]
+            ipolist:[]
+            // ipolist:[{"id":201,"code":"03690","company_name":"美团点评-Ｗ","company_name_en":"","country":"香港","country_id":"HK","flag_uri":"https://wpimg.wallstcn.com/05/c0/05/hongkong-2x.png","exchange_code":"","public_date":1537401600,"price_upper":"72.00","price_floor":"60.00","listed_price":"69.00","currency":"HKD","currency_name":"港元","shares":"480.27","market_value":"31697.72","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":207,"code":"BSVN","company_name":"Bank7","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"19.00","price_floor":"19.00","listed_price":"19.00","currency":"USD","currency_name":"美元","shares":"3.4","market_value":"64.6","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":204,"code":"EB","company_name":"Eventbrite","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"23.00","price_floor":"23.00","listed_price":"23.00","currency":"USD","currency_name":"美元","shares":"10.0","market_value":"230.0","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false},{"id":199,"code":"ELAN","company_name":"Elanco动物健康","company_name_en":"","country":"美国","country_id":"US","flag_uri":"https://wpimg.wallstcn.com/32/75/86/usa-2x.png","exchange_code":"","public_date":1537446600,"price_upper":"24.00","price_floor":"24.00","listed_price":"24.00","currency":"USD","currency_name":"美元","shares":"62.9","market_value":"1509.6","status":"0","visible":false,"calendar_type":"FI","subscribe_status":false}]
 
         },
         methods:{
@@ -315,21 +324,90 @@
                 // console.log(new Date().Format("yyyy-MM-dd"))
                 // console.log(myDate.Format("yyyy-MM-dd"))
                 console.log(getDateFormatDate(myDate))
+                // console.log(getIPODatas(getDateFormatDate(myDate)))
+                this.ipolist=getIPODatas(getDateFormatDate(myDate))
+                // console.log(this.ipolist==[])
+                if(Array.isArray(this.ipolist) && this.ipolist.length === 0){
+                    console.log('是空数组');
+                    // document.getElementById("iposmsg").style.visibility="visible"
+                    document.getElementById("iposmsg").style.display=""
 
+                }else{
+                    console.log('有ipo数据');
+                    // document.getElementById("iposmsg").style.visibility="hidden";
+                    document.getElementById("iposmsg").style.display="none";
+                }
+
+            }
+        },
+        created:function () {
+            console.log("created")
+            var today=getNowFormatDate();
+            console.log(today)
+            this.ipolist=getIPODatas(today)
+            // console.log(this.ipolist==[])
+            if(Array.isArray(this.ipolist) && this.ipolist.length === 0){
+                console.log('是空数组');
+                // document.getElementById("iposmsg").style.visibility="visible"
+                document.getElementById("iposmsg").style.display=""
+
+            }else{
+                console.log('有ipo数据');
+                // document.getElementById("iposmsg").style.visibility="hidden";
+                document.getElementById("iposmsg").style.display="none";
             }
         }
     })
-    
-    
     // 获取点击日期
     function getDay(day) {
         // alert($(day).val)
         console.log(day.innerText)
         
     }
-
     function getDateFormatDate(date) {
         // var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = '0' + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = '0' + strDate;
+        }
+        var currentdate = year + '-' + month + '-' + strDate;
+        return currentdate;
+    }
+    function getIPODatas(date){
+
+        console.log(date);
+        var timestamp=new Date(date);
+        var startstamp=timestamp.getTime()-28800000
+        var endstamp=startstamp+86399000
+        var start=startstamp+""
+        var end=endstamp+""
+        // console.log(start)
+
+        var start=start.substring(0,start.length-3)
+        var end=end.substring(0,end.length-3)
+        console.log(start)
+        console.log(end)
+
+        var requestresult
+        $.getJSON("/getIPODatas?start="+start+"&end="+end,function (cresult, status) {
+            // console.log(data.ipolist)
+            result=cresult;
+            console.log(result)
+            requestresult=result
+            // data.ipolist=result
+            // console.log(data.ipolist)
+        });
+
+        return requestresult
+    }
+    // 获取今日yyyy-dd-mm
+    function getNowFormatDate() {
+        var date = new Date();
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var strDate = date.getDate();
